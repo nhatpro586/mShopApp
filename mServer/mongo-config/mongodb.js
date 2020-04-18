@@ -1,5 +1,15 @@
+import dotenv from 'dotenv'
+const result = dotenv.config()
+
+if (result.error) {
+  throw result.error
+}
+
 import mongoose from 'mongoose'
-mongoose.connect('mongodb://my_user:password123@localhost:27017/my_database', {useNewUrlParser: true});
+
+console.log("==== ", process.env.DB_HOST)
+
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:27017/${process.env.DB_NAME}`, {useNewUrlParser: true});
 
 
 let db = mongoose.connection;

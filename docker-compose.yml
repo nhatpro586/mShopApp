@@ -1,0 +1,21 @@
+version: "3"
+services:
+  graphql:
+    image: jordan235/server_test:1.0.1
+    ports:
+     - "4000:4000"
+     - "3001:3001"
+    environment: 
+     - DB_HOST=mongoose
+    depends_on:
+     - mongoose
+  mongoose:
+    image: bitnami/mongodb:4.2.5
+    environment:
+     - MONGODB_USERNAME=my_user
+     - MONGODB_PASSWORD=password123
+     - MONGODB_DATABASE=my_database    
+    ports:
+     - "27017:27017"
+    volumes:
+     - "./store:/bitnami"

@@ -1,6 +1,8 @@
+
+import './mongo-config/mongodb'
+
 import {typeDefs} from './graphql-config/schema'
 import {resolvers} from './graphql-config/resolver'
-import './mongo-config/mongodb'
 import { GraphQLServer } from 'graphql-yoga'
 import { getUser , verifyToken} from './graphql-config/config';
 var createError = require('http-errors');
