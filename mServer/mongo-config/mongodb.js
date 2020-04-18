@@ -9,15 +9,21 @@ import mongoose from 'mongoose'
 
 console.log("==== ", process.env.DB_HOST)
 
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:27017/${process.env.DB_NAME}`, {useNewUrlParser: true});
+const initAndConnect = () => {
 
+  setTimeout(() => {
+    mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:27017/${process.env.DB_NAME}`, {useNewUrlParser: true});
 
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log("successful connect")
+    let db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function () {
+      console.log("successful connect")    
+    });
+  }, 20000);
+}
 
-});
+initAndConnect()
+
 // const schema=mongoose.schema,
 // const ObjectID = schema.ObjectID,
 
